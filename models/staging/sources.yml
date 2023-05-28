@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: sessions
+    description: sessions and conversion raw tables
+    database: raw
+    schema: raw
+    tables:
+      - name: sessions
+        description: "Source data for sessions table"
+        columns:
+          - name: user_id
+            description: "User ID"
+            data_type: string           
+          - name: time_started
+            description: "Start time of session"
+            data_type: timestamp
+          - name: is_paid
+            description: "Flag indicating if session is paid"
+            data_type: boolean
+          - name: medium
+            description: "Medium of session"
+            data_type: string
+
+  - name: conversions
+    tables:
+      - name: conversions
+        description: "Source data for conversions table"
+        columns:
+          - name: user_id
+            description: "User ID"
+            data_type: string
+          - name: registration_time
+            description: "Registration time"
+            data_type: timestamp
