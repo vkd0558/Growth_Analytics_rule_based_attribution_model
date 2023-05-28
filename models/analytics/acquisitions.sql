@@ -7,7 +7,7 @@ conversions as (
 attribution_data as (
     select
         c.user_id,
-        c.timestamp as conversion_timestamp,
+        c.registration_time as conversion_timestamp,
         s.medium as attribution_medium,
         s.session_end,
         case
@@ -16,7 +16,7 @@ attribution_data as (
         end as is_paid_session
     from conversions c
     left join sessions s on c.user_id = s.user_id
-    where c.timestamp <= s.session_end
+    where c.registration_time <= s.session_end
 ),
 attributions as (
     select
