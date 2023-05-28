@@ -1,35 +1,36 @@
-with sessions as {
-    select * from {{ ref('stg_sessions')}}
-},
-with conversions as {
-    select * from {{ ref('stg_conversions')}}
-}
+with sessions as {select * from {{ ref("stg_sessions") }}},
+with conversions as {select * from {{ ref("stg_conversions") }}}
 -- Create the conversions table
-WITH attribution_data AS (
-  SELECT
-    c.user_id,
-    c.timestamp AS conversion_timestamp,
-    s.medium AS attribution_medium,
-    s.session_end,
-    CASE
-      WHEN s.medium IN ('Paid Impression', 'Paid Click') THEN TRUE
-      ELSE FALSE
-    END AS is_paid_session
-  FROM conversions c
-  LEFT JOIN sessions s ON c.user_id = s.user_id
-  WHERE c.timestamp <= s.session_end
-),
+with
+    attribution_data as (
+        select
+            c.user_id,
+            c.timestamp as conversion_timestamp,
+            s.medium as attribution_medium,
+            s.session_end,
+            case
+                when s.medium in ('Paid Impression', 'Paid Click') then true else false
+            end as is_paid_session
+        from conversions c
+        left join sessions s on c.user_id = s.user_id
+        where c.timestamp <= s.session_end
+    ),
 
-attributions AS (
-  SELECT
-    user_id,
-    CASE
-      WHEN is_paid_session = FALSE THEN 'Organic Click'
-      WHEN attribution_medium = 'Direct' THEN 'Direct'
-      WHEN attribution_medium IS NULL THEN 'Others'
-      ELSE attribution_medium
-    END AS attribution_channel
-  FROM attribution_data
-)
+    attributions as (
+        select
+            user_id,
+            case
+                when is_paid_session = false
+                then 'Organic Click'
+                when attribution_medium = 'Direct'
+                then 'Direct'
+                when attribution_medium is null
+                then 'Others'
+                else attribution_medium
+            end as attribution_channel
+        from attribution_data
+    )
 
-SELECT * FROM attributions;
+select *
+from attributions
+;

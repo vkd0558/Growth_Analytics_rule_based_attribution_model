@@ -21,15 +21,19 @@ sources:
           - name: medium
             description: "Medium of session"
             data_type: string
-
   - name: conversions
+    description: conversion raw tables
+    database: raw
+    schema: raw
     tables:
       - name: conversions
-        description: "Source data for conversions table"
+        description: "conversions data "
         columns:
           - name: user_id
-            description: "User ID"
-            data_type: string
+            description: "User_ID"
+            data_type: String
           - name: registration_time
-            description: "Registration time"
+            description: "user sign-ups time"
             data_type: timestamp
+          
+

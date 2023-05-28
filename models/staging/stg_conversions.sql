@@ -1,11 +1,9 @@
--- Define the source 'conversions'
--- Define the source 'sessions'
+
 with
-    source_conversions as (select * from {{ source("conversions", "conversions") }}),
+    conversions_data as (select * from {{ source("conversions", "conversions") }}),
 
-    stg_conversions as (select * from source_conversions),
+    stg_conversions as (select * from conversions_data)
 
--- Select all columns from the stg_conversions table
 select *
 from stg_conversions
 ;
