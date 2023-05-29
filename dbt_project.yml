@@ -41,3 +41,5 @@ models:
     analytics:
       materialized: view
       +secure: true
+seeds:
+    +enabled: true
