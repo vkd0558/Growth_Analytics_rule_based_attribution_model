@@ -1,12 +1,12 @@
 with
-    sessions as (select * from {{ ref("int_sessions") }}),
-    acquisitions as (select * from {{ ref("mart_attributions") }}),
+    conversions as (select * from {{ ref("stg_conversions") }}),
+    attributions as (select * from {{ ref("mart_attributions") }})
 select
-    channel,
+    attribution_channel,
     date_trunc('month', registration_time) as attribution_month,
-    count(distinct user_id) as attributed_users,
+    count(distinct a.user_id) as attributed_users,
     count(*) as attributed_conversions
-from acquisitions a
-left join session_data b on a.user_id = b.user_id
-group by channel, attribution_month
-order by attribution_month, channel
+from attributions a
+left join conversions b on a.user_id = b.user_id
+group by attribution_channel, attribution_month
+order by attribution_month, attribution_channel
