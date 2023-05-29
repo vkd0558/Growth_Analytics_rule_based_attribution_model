@@ -1,5 +1,5 @@
 with sessions as (
-    select * from {{ ref('stg_sessions') }}
+    select * from {{ ref('int_sessions') }}
 ),
 conversions as (
     select * from {{ ref('stg_conversions') }}
@@ -30,4 +30,4 @@ attributions as (
     from attribution_data
 )
 select *
-from attributions;
+from attributions

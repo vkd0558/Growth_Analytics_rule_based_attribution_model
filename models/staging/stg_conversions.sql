@@ -6,4 +6,4 @@ with
 
 select *
 from stg_conversions
-;
+

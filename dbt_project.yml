@@ -36,3 +36,8 @@ models:
     # Applies to all files under models/example/
     staging:
       materialized: view
+    mart:
+      materialized: table
+    analytics:
+      materialized: view
+      +secure: true

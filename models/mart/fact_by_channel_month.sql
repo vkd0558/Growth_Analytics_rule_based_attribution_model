@@ -1,6 +1,6 @@
 with
-    sessions as (select * from {{ ref("stg_sessions") }}),
-    acquisitions as (select * from {{ ref("acquisitions") }}),
+    sessions as (select * from {{ ref("int_sessions") }}),
+    acquisitions as (select * from {{ ref("mart_attributions") }}),
 select
     channel,
     date_trunc('month', registration_time) as attribution_month,
