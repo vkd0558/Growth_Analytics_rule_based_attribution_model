@@ -43,3 +43,5 @@ models:
       +secure: true
 seeds:
     +enabled: true
+tests:
+  my_new_project:

@@ -11,10 +11,14 @@ models:
             FROM int_sessions
             GROUP BY user_id
             HAVING COUNT(*) > 1
+          expect:
+            - row_count: 0
+              success: true
+              message: "All user_id values in sessions table are unique"
       - count_records: 
           description: "Check the total number of records in sessions table"
           severity: warn
-          query: >
+          query: |
             SELECT COUNT(*) as count
             FROM int_sessions
           expect:
@@ -26,7 +30,7 @@ models:
           column: user_id
           description: "Check if 'user_id' column has NULL values in sessions table"
           severity: error
-          query: >
+          query: |
             SELECT COUNT(*) as count
             FROM int_sessions
             WHERE user_id IS NULL
@@ -35,4 +39,3 @@ models:
               count: 0
               success: true
               message: "No NULL values found in 'user_id' column of sessions table"
-  

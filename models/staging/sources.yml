@@ -11,13 +11,10 @@ sources:
         columns:
           - name: user_id
             description: "User ID"
-            data_type: string           
+            data_type: number           
           - name: time_started
             description: "Start time of session"
             data_type: timestamp
-          - name: is_paid
-            description: "Flag indicating if session is paid"
-            data_type: boolean
           - name: medium
             description: "Medium of session"
             data_type: string
@@ -31,7 +28,7 @@ sources:
         columns:
           - name: user_id
             description: "User_ID"
-            data_type: String
+            data_type: number
           - name: registration_time
             description: "user sign-ups time"
             data_type: timestamp

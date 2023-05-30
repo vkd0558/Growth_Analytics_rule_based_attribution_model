@@ -4,4 +4,4 @@ with
     stg_sessions as (select * from sessions_data)
 
 select *
-from stg_sessions
+from stg_sessions 
