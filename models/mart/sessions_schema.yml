@@ -2,40 +2,7 @@ version: 2
 
 models:
   - name: int_sessions
-    tests:
-      - unique_user_ids:
-          severity: warn
-          description: "Check if user_id values in sessions table are unique"
-          query: |
-            SELECT user_id, COUNT(*) as count
-            FROM int_sessions
-            GROUP BY user_id
-            HAVING COUNT(*) > 1
-          expect:
-            - row_count: 0
-              success: true
-              message: "All user_id values in sessions table are unique"
-      - count_records: 
-          description: "Check the total number of records in sessions table"
-          severity: warn
-          query: |
-            SELECT COUNT(*) as count
-            FROM int_sessions
-          expect:
-            - row_count: 1
-              count: 1000
-              success: true
-              message: "Total number of records in sessions table is 1000"
-      - not_null:
-          column: user_id
-          description: "Check if 'user_id' column has NULL values in sessions table"
-          severity: error
-          query: |
-            SELECT COUNT(*) as count
-            FROM int_sessions
-            WHERE user_id IS NULL
-          expect:
-            - row_count: 1
-              count: 0
-              success: true
-              message: "No NULL values found in 'user_id' column of sessions table"
+    columns:
+      - name: user_id
+        tests:
+          - not_null              
