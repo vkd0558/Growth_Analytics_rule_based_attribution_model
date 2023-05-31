@@ -10,9 +10,27 @@ with
                 then 'Paid Click'
                 when medium in ('IMPRESSION')
                 then 'Paid Impression'
-                else 'Organic Click'
+                when medium = 'Direct'
+                then 'Direct'
+                when
+                    medium in (
+                        'REFERRAL',
+                        'ORGANIC SEARCH',
+                        'DIRECT',
+                        'MARKETPLACE',
+                        'INVITES',
+                        'PRIVATE_BOARD',
+                        'OTHER',
+                        'MOBILE_POPUP',
+                        'SSO',
+                        'SOCIAL',
+                        'DIRECTORIES',
+                        'MAIL'
+                    )
+                then 'Organic Click'
+                else 'Others'
             end as attribution_channel
-        from {{ ref('stg_sessions') }}
+        from {{ ref("stg_sessions") }}
     ),
 
     session_data as (
@@ -56,4 +74,3 @@ with
 
 select *
 from int_sessions
-

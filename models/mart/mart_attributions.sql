@@ -101,39 +101,24 @@ with
                         )
                     )
                 then 'Valid'
-                -- Scenario 4: No live sessions (paid or organic), assign credit to
-                -- Direct or Others
-                when
-                    attribution_data.attribution_channel is null
-                    and (
-                        attribution_data.attribution_medium = 'Direct'
-                        or (
-                            attribution_data.attribution_medium is null
-                            and not exists (
-                                select 1
-                                from sessions s
-                                where s.user_id = attribution_data.user_id
-                            )
-                        )
-                    )
-                then 'Valid'
-                else 'Invalid'
             end as attribution_validation,
             case
-                -- Assign credit to Paid Click if valid and last touch
                 when
                     attribution_data.attribution_channel = 'Paid Click'
                     and attribution_validation = 'Valid'
                 then 1.0
-                -- Assign credit to Paid Impression if valid and last touch
                 when
                     attribution_data.attribution_channel = 'Paid Impression'
                     and attribution_validation = 'Valid'
                 then 1.0
-                -- Assign credit to Organic Click if valid and not hijacked
                 when
                     attribution_data.attribution_channel = 'Organic Click'
                     and attribution_validation = 'Valid'
+                then 1.0
+               --- No live sessions (paid or organic), assign credit to
+                -- Direct or Others
+                when
+                    attribution_data.attribution_medium in('Direct','Others')
                 then 1.0
                 else 0.0
             end as credit

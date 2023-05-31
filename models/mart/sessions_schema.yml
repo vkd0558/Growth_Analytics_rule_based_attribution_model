@@ -5,4 +5,4 @@ models:
     columns:
       - name: user_id
         tests:
-          - not_null              
+          - not_null
