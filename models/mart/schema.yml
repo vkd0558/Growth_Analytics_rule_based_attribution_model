@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: tests
+    schema: dbt_vkd0558
+    database: vkd_analytics_db
+    tables:
+      - name: int_sessions
+        columns:
+          - name: user_id
+            description: "Not null user_id check int_sessions table"
+            tests:
+              - not_null
+          - name: time_started
+            tests:
+              - not_null
+      - name: mart_attributions
+        columns:
+          - name: is_paid
+            description: "accepted values"
+            tests:
+              - accepted_values:
+                  values: ['TRUE', 'FALSE']
+          - name: attribution_channel
+            description: "accepted values"
+            tests:
+              - accepted_values:
+                  values: ['Paid Click', 'Organic Click', 'Paid Impression', 'Direct', 'Others']

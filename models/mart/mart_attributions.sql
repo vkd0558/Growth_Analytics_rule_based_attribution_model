@@ -115,10 +115,9 @@ with
                     attribution_data.attribution_channel = 'Organic Click'
                     and attribution_validation = 'Valid'
                 then 1.0
-               --- No live sessions (paid or organic), assign credit to
+                -- - No live sessions (paid or organic), assign credit to
                 -- Direct or Others
-                when
-                    attribution_data.attribution_medium in('Direct','Others')
+                when attribution_data.attribution_medium in ('Direct', 'Others')
                 then 1.0
                 else 0.0
             end as credit

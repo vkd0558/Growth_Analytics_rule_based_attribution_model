@@ -45,3 +45,4 @@ seeds:
     +enabled: true
 tests:
   my_new_project:
+    +enabled: true
