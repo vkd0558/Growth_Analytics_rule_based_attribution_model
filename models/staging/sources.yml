@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: sessions
+    description: sessions and conversion raw tables
+    database: raw
+    schema: raw
+    tables:
+      - name: sessions
+        description: "Source data for sessions table"
+        columns:
+          - name: user_id
+            description: "User ID"
+            data_type: number           
+          - name: time_started
+            description: "Start time of session"
+            data_type: timestamp
+          - name: medium
+            description: "Medium of session"
+            data_type: string
+  - name: conversions
+    description: conversion raw tables
+    database: raw
+    schema: raw
+    tables:
+      - name: conversions
+        description: "conversions data "
+        columns:
+          - name: user_id
+            description: "User_ID"
+            data_type: number
+          - name: registration_time
+            description: "user sign-ups time"
+            data_type: timestamp
+          
+
