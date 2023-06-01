@@ -1,5 +1,5 @@
 
-{% macro count_records(query, expect) %}
+{% macro test_count_records(query, expect) %}
   {% set result = run_query(query) %}
   {% set row_count = result.row_count %}
   

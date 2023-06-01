@@ -48,7 +48,7 @@ WHERE channel IN ('Paid Click', 'Paid Impression')
     FROM {{ ref('analy_attributions') }} AS b
     WHERE b.user_id = a.user_id
       AND b.channel != a.channel
-      AND b.session_dttm <= <= DATEADD('hour', 3, a.session_dttm)
+      AND b.session_dttm <= DATEADD('hour', 3, a.session_dttm)
       AND b.session_dttm >= a.session_dttm
   )
 
@@ -63,7 +63,7 @@ WHERE NOT EXISTS (
   WHERE b.user_id = a.user_id
     AND (
       (b.channel IN ('Paid Click', 'Paid Impression')
-        AND b.session_dttm <= <= DATEADD('hour', 3, a.session_dttm)
+        AND b.session_dttm <= DATEADD('hour', 3, a.session_dttm)
       OR (b.channel = 'Organic Click'
         AND b.session_dttm <= <= DATEADD('hour', 12, a.session_dttm)
     )

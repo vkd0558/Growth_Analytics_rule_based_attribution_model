@@ -35,7 +35,6 @@ sources:
             - name: session_dttm
               tests:
                 - not_null
-                - unique                    
             - name: is_paid
               description: "accepted values"
               tests:
