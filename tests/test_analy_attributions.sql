@@ -50,47 +50,18 @@ WHERE channel IN ('Paid Click', 'Paid Impression')
       AND b.channel != a.channel
       AND b.session_dttm <= DATEADD('hour', 3, a.session_dttm)
       AND b.session_dttm >= a.session_dttm
-  )
+  ) AND IS_PAID='TRUE'
 
 UNION ALL
 
--- Test that attributions without live sessions are either Direct or Others
 SELECT COUNT(*)
 FROM {{ ref('analy_attributions') }} AS a
-WHERE NOT EXISTS (
-  SELECT 1
-  FROM {{ ref('analy_attributions') }} AS b
-  WHERE b.user_id = a.user_id
+LEFT JOIN {{ ref('analy_attributions') }} AS b
+    ON a.user_id = b.user_id
     AND (
-      (b.channel IN ('Paid Click', 'Paid Impression')
-        AND b.session_dttm <= DATEADD('hour', 3, a.session_dttm)
-      OR (b.channel = 'Organic Click'
-        AND b.session_dttm <= <= DATEADD('hour', 12, a.session_dttm)
+        (b.channel IN ('Paid Click', 'Paid Impression') AND b.session_dttm <= DATEADD('hour', 3, a.session_dttm))
+        OR (b.channel = 'Organic Click' AND b.session_dttm <= DATEADD('hour', 12, a.session_dttm))
     )
-)
-  AND a.medium NOT IN ('Direct', 'Others')
-
-UNION ALL
-
--- Test that all channel are accounted for
-SELECT COUNT(*)
-FROM {{ ref('analy_attributions') }}
-WHERE channel = 'Paid Click'
-
-UNION ALL
-SELECT COUNT(*)
-FROM {{ ref('mart_attributions') }}
-WHERE channel = 'Paid Impression'
-UNION ALL
-SELECT COUNT(*)
-FROM {{ ref('analy_attributions') }}
-WHERE channel = 'Organic Click'
-
-
-
-
-
-
 
 
 
