@@ -1,6 +1,6 @@
 with
     conversions as (select * from {{ ref("stg_conversions") }}),
-    attributions as (select * from {{ ref("mart_attributions") }})
+    attributions as (select * from {{ ref("analy_attributions") }})
 select
     channel,
     date_trunc('month', REGISTRATION_DTTM) as attribution_month,
