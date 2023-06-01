@@ -1,12 +1,11 @@
+
 with
-    conversions as (select * from {{ ref("stg_conversions") }}),
-    attributions as (select * from {{ ref("mart_attributions") }})
-select
-    channel,
-    date_trunc('month', REGISTRATION_DTTM) as attribution_month,
-    count(distinct a.user_id) as attributed_users,
-    count(*) as attributed_conversions
-from attributions a
-left join conversions b on a.user_id = b.user_id
-group by channel, attribution_month
-order by attribution_month, channel
+    attributions as (select * from {{ ref("analy_attributions") }})
+SELECT
+  channel,
+  TO_CHAR(DATE_TRUNC('month', REGISTRATION_DTTM), 'Mon') AS attribution_month,
+  COUNT(DISTINCT user_id) AS attributed_users,
+  COUNT(CASE WHEN is_paid = 'TRUE' THEN 1 END) AS attributed_conversions
+FROM attributions
+GROUP BY channel, attribution_month
+ORDER BY attribution_month, channel;
