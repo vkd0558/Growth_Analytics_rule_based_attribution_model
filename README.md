@@ -1,4 +1,4 @@
-# miro_test
+**Case Study**
 We’re working with the Growth analytics team to improve how we attribute user sign ups to our acquisition channels and we want to use custom rules to define which channel should be awarded the credit for a given conversion. We will want to run this attribution model on a daily basis to track our acquisition channel results and we will also continue iterating on the model logic over time.
 Modeling & Approach:
 Rule-based attribution model helps in this use case to define the rules and logic for awarding credit to different acquisition channels based on specific criteria (PAID click, Impression, Organic), which includes below.
