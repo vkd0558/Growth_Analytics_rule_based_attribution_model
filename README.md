@@ -3,10 +3,10 @@
 We’re working with the Growth analytics team to improve how we attribute user sign ups to our acquisition channels and we want to use custom rules to define which channel should be awarded the credit for a given conversion. We will want to run this attribution model on a daily basis to track our acquisition channel results and we will also continue iterating on the model logic over time. 
 
 **Data Modeling & Approach:** Rule-based attribution model helps in this use case to define the rules and logic for awarding credit to different acquisition channels based on specific criteria (PAID click, Impression, Organic), which includes below. 
-• Identify Attribution Factors – includes first-touch, last-touch, time decay consideration 
-• Defining Attribution rules – determine how credit should be awarded based on the identified factors 
-• Assign credit based on rules – Apply the attribution rules to each conversion or user interaction 
-• Aggregate attribution data –calculate the total credit awarded to each acquisition channel over a given rule
+ - Identify Attribution Factors – includes first-touch, last-touch time decay consideration
+ - Defining Attribution rules – determine how credit should be awarded based on the identified factors
+ - Assign credit based on rules – Apply the attribution rules to each conversion or user interaction
+ - Aggregate attribution data – calculate the total credit awarded to each acquisition channel over a given rule
 
 **Why Rule-based attribution model:** 
 Flexible in defining the attribution rules. we can adjust/add the rules based on your specific business requirements and goals. We can define rules that align with our understanding of user behavior and marketing strategies
