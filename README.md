@@ -1,4 +1,5 @@
 **Case Study**
+
 We’re working with the Growth analytics team to improve how we attribute user sign ups to our acquisition channels and we want to use custom rules to define which channel should be awarded the credit for a given conversion. We will want to run this attribution model on a daily basis to track our acquisition channel results and we will also continue iterating on the model logic over time. 
 
 **Data Modeling & Approach:** Rule-based attribution model helps in this use case to define the rules and logic for awarding credit to different acquisition channels based on specific criteria (PAID click, Impression, Organic), which includes below. 
@@ -16,4 +17,5 @@ Attribution rules:
  - Organic Click: If a conversion event occurs within 12 hours of an Organic Click session and there are no intervening Paid Click or Paid Impression sessions, the Organic Click session will receive 100% attribution credit. However, if there is a Paid Click or Paid Impression session within the 12-hour window, the credit will be attributed to the Paid session.
  - Direct: If a user signs up without any live session (Paid or Organic), and the medium is "Direct," the Direct channel will receive 100% attribution credit.
  - Others: If a user signs up without any live session (Paid or Organic) and the medium is not "Direct," the Others channel will receive 100% attribution credit.
+ 
 Refer [Case Study.pdf] for more details on implementation using dbt, SQL, Snowflake (https://github.com/vkd0558/Growth_Analytics_role_based_attribution_model/blob/main/Case%20Study.pdf "Case Study.pdf")
