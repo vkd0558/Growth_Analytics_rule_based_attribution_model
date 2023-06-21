@@ -18,4 +18,4 @@ Attribution rules:
  - Direct: If a user signs up without any live session (Paid or Organic), and the medium is "Direct," the Direct channel will receive 100% attribution credit.
  - Others: If a user signs up without any live session (Paid or Organic) and the medium is not "Direct," the Others channel will receive 100% attribution credit.
  
-Refer [Case Study.pdf] for more details on implementation using dbt, SQL, Snowflake (https://github.com/vkd0558/Growth_Analytics_role_based_attribution_model/blob/main/Case%20Study.pdf "Case Study_Reference_doc.pdf")
+Refer [Case Study.pdf] for more details on implementation using dbt, SQL, Snowflake (https://github.com/vkd0558/Growth_Analytics_role_based_attribution_model/blob/main/Case%20Study.pdf)
