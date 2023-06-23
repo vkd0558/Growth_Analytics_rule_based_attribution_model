@@ -20,4 +20,7 @@ Attribution rules:
  
 Refer [Case Study.pdf] for more details on implementation using dbt, SQL, Snowflake (https://github.com/vkd0558/Growth_Analytics_role_based_attribution_model/blob/main/Case%20Study.pdf "Case Study.pdf")
 
+![flow](https://github.com/vkd0558/Growth_Analytics_rule_based_attribution_model/blob/main/Capture.PNG)
+
+
 
